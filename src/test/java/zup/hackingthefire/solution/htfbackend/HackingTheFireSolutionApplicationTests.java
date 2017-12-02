@@ -1,4 +1,4 @@
-package zup.hackingthefire.solution.Hacking.The.Fire.Solution;
+package zup.hackingthefire.solution.htfbackend;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

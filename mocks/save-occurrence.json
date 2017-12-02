@@ -1,0 +1,23 @@
+{
+  "address": "Rua Arlindo Gomes Rodrigues",
+  "addressNumber": "454",
+  "age": 21,
+  "comments": "Passou mal ontem a noite",
+  "city": "Uberlandia",
+  "emergency": false,
+  "gender": "Masculino",
+  "neighborhood": "Santa Monica",
+  "occurrenceStatus": "OPENED",
+  "patientComplaint": "Dores de cabeça fortes",
+  "patients": [
+    {
+      "age": 23,
+      "fullName": "Silvania Alves",
+      "gender": "Feminino",
+      "symptomDescription": "Dores de cabeça"
+    }
+  ],
+  "phone": "(34) 99160-2823",
+  "reference": "Perto do mercado",
+  "requester": "Mateus Henrique Alves da Cruz"
+}

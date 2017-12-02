@@ -4,6 +4,7 @@ target/
 mvnw
 mvnw.cmd
 *.DS_Store
+data/*
 
 ### IntelliJ IDEA ###
 .idea

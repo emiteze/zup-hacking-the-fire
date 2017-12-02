@@ -1,0 +1,24 @@
+{
+  "id": "43620976",
+  "phone": "34999999999",
+  "requester": "Romulo Nascimento",
+  "city": "Uberlândia",
+  "address": "Rua dos bobo",
+  "addressNumber": "123",
+  "neighborhood": "Santa Mônica",
+  "reference": "Perto do MadreCor",
+  "patients": [
+    {
+      "fullName": "João",
+      "gender": "Masculino",
+      "age": 67,
+      "symptomDescription": ""
+    }
+  ],
+  "comments": "teste",
+  "occurrenceStatus": "OPENED",
+  "latitude": 0,
+  "longitude": 0,
+  "emergencyDescription": "",
+  "emergency": true
+}

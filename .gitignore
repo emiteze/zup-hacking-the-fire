@@ -5,6 +5,7 @@ mvnw
 mvnw.cmd
 *.DS_Store
 data/*
+logs/*
 
 ### IntelliJ IDEA ###
 .idea

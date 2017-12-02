@@ -1,0 +1,21 @@
+{
+  "address": "Rua Terezina",
+  "addressNumber": "1604",
+  "comments": "Passou mal ontem a noite",
+  "city": "Uberlandia",
+  "emergency": true,
+  "emergencyDescription": "blablallablalllblalalblal",
+  "neighborhood": "Umuarama",
+  "occurrenceStatus": "OPENED",
+  "patients": [
+    {
+      "age": 23,
+      "fullName": "Eduardo Costa",
+      "gender": "Masculino",
+      "symptomDescription": "Dores de cabeça"
+    }
+  ],
+  "phone": "34991602823",
+  "reference": "Perto do mercado",
+  "requester": "Thiago Fuzaro"
+}

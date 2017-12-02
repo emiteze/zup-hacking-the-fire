@@ -2,14 +2,22 @@ package zup.hackingthefire.solution.htfbackend.model;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.json.JSONObject;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Document(collection = "occurrences")
 public class Occurrence {
+
+    private static final String GEOCODE_MAPS_API_URL = "https://maps.googleapis.com/maps/api/geocode/json";
+    private static final String GEOCODE_MAPS_API_KEY = "AIzaSyBLiHfvDCzU5_D3p4JHqNHQiWVdUjFRz3I";
+    private static final Logger logger = LoggerFactory.getLogger(Occurrence.class);
 
     @Id
     private final String id = RandomStringUtils.randomNumeric(8);
@@ -38,14 +46,10 @@ public class Occurrence {
     @NotEmpty
     private List<Patient> patients;
 
-    @NotEmpty
-    private String gender;
-
-    @NotNull
-    private int age;
-
+    /*
     @NotEmpty
     private String patientComplaint;
+    */
 
     @NotEmpty
     private String comments;
@@ -56,10 +60,18 @@ public class Occurrence {
     @NotNull
     private OccurrenceStatus occurrenceStatus;
 
+    @NotNull
+    private Double latitude;
+
+    @NotNull
+    private Double longitude;
+
+    private String emergencyDescription;
+
     public Occurrence(){}
 
     public Occurrence(String phone, String city, String address, String addressNumber, String neighborhood, String reference,
-                      List<Patient> patients, String gender, int age, String patientComplaint, String comments, Boolean isEmergency, String occurrenceStatus) {
+                      List<Patient> patients, String patientComplaint, String comments, Boolean isEmergency, String occurrenceStatus, String emergencyDescription) {
         this.phone = phone;
         this.city = city;
         this.address = address;
@@ -67,12 +79,40 @@ public class Occurrence {
         this.neighborhood = neighborhood;
         this.reference = reference;
         this.patients = patients;
-        this.gender = gender;
-        this.age = age;
-        this.patientComplaint = patientComplaint;
+        /*this.patientComplaint = patientComplaint;*/
         this.comments = comments;
         this.isEmergency = isEmergency;
         this.occurrenceStatus = OccurrenceStatus.valueOf(occurrenceStatus);
+        this.emergencyDescription = emergencyDescription;
+        setCoordinatesFromOccurrance();
+    }
+
+    public void setCoordinatesFromOccurrance(){
+
+        logger.info("Seting Coordinates for Occurrance " + this.getId());
+        Connection.Response firstResponse = null;
+
+        try {
+            firstResponse = Jsoup.connect(GEOCODE_MAPS_API_URL + "?address=" + address + ", " + addressNumber + " - " + city + "&key=" + GEOCODE_MAPS_API_KEY)
+                        .method(Connection.Method.GET)
+                        .ignoreContentType(true)
+                        .execute();
+
+            JSONObject firstResponseJson = new JSONObject(firstResponse.body());
+
+            logger.info("Response API maps: " + firstResponseJson.toString());
+
+            if(firstResponseJson.getString("status").equals("OK")){
+                this.latitude = firstResponseJson.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location").getDouble("lat");
+                logger.info("Lat: " + this.latitude);
+                this.longitude = firstResponseJson.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location").getDouble("lng");
+                logger.info("Long: " + this.longitude);
+            }
+
+        } catch (Exception e){
+            logger.info(e.getMessage());
+        }
+
     }
 
     public enum OccurrenceStatus{
@@ -147,22 +187,7 @@ public class Occurrence {
         this.patients = patients;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
+    /*
     public String getPatientComplaint() {
         return patientComplaint;
     }
@@ -170,6 +195,7 @@ public class Occurrence {
     public void setPatientComplaint(String patientComplaint) {
         this.patientComplaint = patientComplaint;
     }
+    */
 
     public String getComments() {
         return comments;
@@ -193,6 +219,30 @@ public class Occurrence {
 
     public void setOccurrenceStatus(OccurrenceStatus occurrenceStatus) {
         this.occurrenceStatus = occurrenceStatus;
+    }
+
+    public String getEmergencyDescription() {
+        return emergencyDescription;
+    }
+
+    public void setEmergencyDescription(String emergencyDescription) {
+        this.emergencyDescription = emergencyDescription;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
     }
 
 }

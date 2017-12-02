@@ -18,7 +18,25 @@ public class OccurrenceService {
     }
 
     public Occurrence saveOccurrence(Occurrence occurrence){
+        if(occurrence.getId() != null){
+            occurrence = repository.findOne(occurrence.getId());
+        }
+        if(occurrence.getLatitude() == null || occurrence.getLongitude() == null){
+            occurrence.setCoordinatesFromOccurrance();
+        }
         return repository.save(occurrence);
+    }
+
+    public Occurrence findOccurrenceById(String id){
+        return repository.findOne(id);
+    }
+
+    public List<Occurrence> findOccurrenceByStatus(Occurrence.OccurrenceStatus occurrenceStatus){
+        return repository.findByOccurrenceStatus(occurrenceStatus);
+    }
+
+    public List<Occurrence> findUrgentOccurrencies(Boolean isEmergency){
+        return repository.findByIsEmergency(isEmergency);
     }
 
 }

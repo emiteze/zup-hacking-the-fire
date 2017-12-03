@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zup.hackingthefire.solution.htfbackend.model.Occurrence;
 import zup.hackingthefire.solution.htfbackend.repository.OccurrenceRepository;
-
 import java.util.List;
 
 @Service

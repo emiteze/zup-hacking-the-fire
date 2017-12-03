@@ -7,7 +7,6 @@ import java.util.List;
 public interface OccurrenceRepository extends MongoRepository<Occurrence, String> {
 
     public List<Occurrence> findByOccurrenceStatus(Occurrence.OccurrenceStatus occurrenceStatus);
-
     public List<Occurrence> findByIsEmergency(Boolean isEmergency);
 
 }

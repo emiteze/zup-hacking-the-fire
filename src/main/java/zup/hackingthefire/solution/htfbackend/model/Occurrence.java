@@ -46,11 +46,6 @@ public class Occurrence {
     @NotEmpty
     private List<Patient> patients;
 
-    /*
-    @NotEmpty
-    private String patientComplaint;
-    */
-
     @NotEmpty
     private String comments;
 
@@ -71,7 +66,7 @@ public class Occurrence {
     public Occurrence(){}
 
     public Occurrence(String phone, String city, String address, String addressNumber, String neighborhood, String reference,
-                      List<Patient> patients, String patientComplaint, String comments, Boolean isEmergency, String occurrenceStatus, String emergencyDescription) {
+                      List<Patient> patients, String comments, Boolean isEmergency, String occurrenceStatus, String emergencyDescription) {
         this.phone = phone;
         this.city = city;
         this.address = address;
@@ -79,7 +74,6 @@ public class Occurrence {
         this.neighborhood = neighborhood;
         this.reference = reference;
         this.patients = patients;
-        /*this.patientComplaint = patientComplaint;*/
         this.comments = comments;
         this.isEmergency = isEmergency;
         this.occurrenceStatus = OccurrenceStatus.valueOf(occurrenceStatus);
@@ -186,16 +180,6 @@ public class Occurrence {
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }
-
-    /*
-    public String getPatientComplaint() {
-        return patientComplaint;
-    }
-
-    public void setPatientComplaint(String patientComplaint) {
-        this.patientComplaint = patientComplaint;
-    }
-    */
 
     public String getComments() {
         return comments;

@@ -2,7 +2,8 @@
 
 ## Membros - Time 9
 
-> Eduardo Costa Paiva - Frontend
+>
+Eduardo Costa Paiva - Frontend
 >
 Gabriel Augusto Marson - Mobile iOS Native
 >
@@ -12,7 +13,8 @@ Thiago Fuzaro - Frontend
 
 ## Technologies Used
 
-> Backend - Spring and Mongo
+>
+Backend - Spring and Mongo
 >
 Frontend - VueJS and Bootstrap
 >

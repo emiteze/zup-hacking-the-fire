@@ -24,7 +24,7 @@ Mobile - Swift
 
 > 1.Install [MongoDB](https://www.mongodb.com/download-center), [Java](https://www.java.com/pt_BR/download/) and [Maven](https://maven.apache.org/download.cgi)
 >
-> 2.Clone this repository using ` git clone https://github.com/emiteze/xy-inc.git `
+> 2.Clone this repository using ` https://github.com/emiteze/zup-hacking-the-fire.git `
 >
 > 3.On the root of the project, run:
 >
